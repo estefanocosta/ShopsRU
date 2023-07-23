@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopsRU.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,11 @@ namespace ShopsRU.Application.DiscountStrategies
     public class RuleJson
     {
         public List<int> ExcludeCategories { get; set; }
-        public int CustomerAgeMinYear { get; set; }
-        public int SubLimit { get; set; }
-        public decimal SubLimitApplyDiscountAmount { get; set; }
+        public int CustomerAgeYear { get; set; }
+        public int FixedAmount { get; set; }
+        public decimal FixedDiscountAmount { get; set; }
+        public bool LoyalCustomerPriority { get; set; }
+        public decimal LoyalCustomerDiscountRate { get; set; }
+
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShopsRU.Application.Validators
 {
-    public class ProductValidator : AbstractValidator<CreateProductRequest>, IValidator<CreateProductRequest>
+    public class ProductValidator : AbstractValidator<CreateProductRequest>
     {
         public ProductValidator()
         {

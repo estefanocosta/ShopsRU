@@ -14,12 +14,7 @@ namespace ShopsRU.Application.Interfaces.Services
 {
     public interface IInvoiceService
     {
-       
-
-
-
         Task<ServiceDataResponse<CreateInvoiceResponse>> CreateAsync(CreateInvoiceRequest createInvoiceRequest);
-
         Task<ServiceDataResponse<GetSingleInvoiceResponse>> GetSingleAsync(int id);
     }
 }

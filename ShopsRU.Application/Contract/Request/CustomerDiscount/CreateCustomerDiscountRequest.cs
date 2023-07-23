@@ -16,7 +16,7 @@ namespace ShopsRU.Application.Contract.Request.CustomerDiscount
         public CustomerDiscountResponse MapToPaylod(ShopsRU.Domain.Entities.CustomerDiscount customerDiscount)
         {
             var ruleJson = JsonConvert.DeserializeObject<RuleJson>(customerDiscount.RuleJson);
-            return new CustomerDiscountResponse { Id = customerDiscount.Id, DiscountId = customerDiscount.DiscountId, CustomerTypeId = customerDiscount.CustomerTypeId, RuleJson = new RuleJson() { ExcludeCategories = ruleJson.ExcludeCategories, SubLimit = ruleJson.SubLimit, SubLimitApplyDiscountAmount = ruleJson.SubLimitApplyDiscountAmount, CustomerAgeMinYear = ruleJson.CustomerAgeMinYear } };
+            return new CustomerDiscountResponse { Id = customerDiscount.Id, DiscountId = customerDiscount.DiscountId, CustomerTypeId = customerDiscount.CustomerTypeId, RuleJson = new RuleJson() { ExcludeCategories = ruleJson.ExcludeCategories, FixedAmount = ruleJson.FixedAmount, FixedDiscountAmount = ruleJson.FixedDiscountAmount, CustomerAgeYear = ruleJson.CustomerAgeYear,LoyalCustomerDiscountRate= ruleJson.LoyalCustomerDiscountRate,LoyalCustomerPriority=ruleJson.LoyalCustomerPriority } };
         }
 
 

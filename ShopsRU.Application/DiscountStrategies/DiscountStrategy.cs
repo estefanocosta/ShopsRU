@@ -11,32 +11,31 @@ namespace ShopsRU.Application.DiscountStrategies
 {
     public class DiscountStrategy : IDiscountStrategy
     {
-        public ApplyDiscountResponse ApplyDiscount(DiscountStratecyRules discountStratecyRules, Customer customer, decimal totalAmount)
+        public ApplyDiscountResponse ApplyDiscount(DiscountStrategyRules discountStrategyRules, Customer customer, decimal totalAmount)
         {
             ApplyDiscountResponse applyDiscountResponse = new ApplyDiscountResponse();
             bool isPercentageDiscountApplied = false;
-            DateTime twoYearsAgo = DateTime.Now.AddYears(-2);
-            if (customer != null)
+            if (customer.CustomerTypeId == (int)Domain.Enums.CustomerType.Employee && !isPercentageDiscountApplied)
             {
-                if (customer.CustomerTypeId == (int)CustomerTypeEnum.Employee && !isPercentageDiscountApplied)
-                {
-                    applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStratecyRules.DiscountRate;
-                    isPercentageDiscountApplied = true;
-                }
-                else if (customer.CustomerTypeId == (int)CustomerTypeEnum.Member && !isPercentageDiscountApplied)
-                {
-                    applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStratecyRules.DiscountRate;
-                    isPercentageDiscountApplied = true;
-                }
-                else if (IsCustomerLoyal(customer.JoiningDate, discountStratecyRules.RuleJson.CustomerAgeMinYear) && customer.CustomerTypeId == (int)CustomerTypeEnum.LoyalCustomer && !isPercentageDiscountApplied)
-                {
-                    applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStratecyRules.DiscountRate;
-                    isPercentageDiscountApplied = true;
-                }
-                int discountForEachHundredDollar = (int)totalAmount / discountStratecyRules.RuleJson.SubLimit;
-                applyDiscountResponse.DiscountAmount += discountForEachHundredDollar * discountStratecyRules.RuleJson.SubLimitApplyDiscountAmount;
-                applyDiscountResponse.NetAmount = totalAmount - applyDiscountResponse.DiscountAmount;
+                applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStrategyRules.DiscountRate;
+                isPercentageDiscountApplied = true;
             }
+            if (customer.CustomerTypeId == (int)Domain.Enums.CustomerType.Member && !isPercentageDiscountApplied)
+            {
+                if (IsCustomerLoyal(customer.JoiningDate, discountStrategyRules.RuleJson.CustomerAgeYear) && discountStrategyRules.RuleJson.LoyalCustomerPriority)
+                {
+                    applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStrategyRules.RuleJson.LoyalCustomerDiscountRate;
+                    isPercentageDiscountApplied = true;
+                }
+                else
+                {
+                    applyDiscountResponse.DiscountAmount += totalAmount / 100 * discountStrategyRules.DiscountRate;
+                    isPercentageDiscountApplied = true;
+                }
+            }
+            int discountForEachHundredDollar = (int)totalAmount / discountStrategyRules.RuleJson.FixedAmount;
+            applyDiscountResponse.DiscountAmount += discountForEachHundredDollar * discountStrategyRules.RuleJson.FixedDiscountAmount;
+            applyDiscountResponse.NetAmount = totalAmount - applyDiscountResponse.DiscountAmount;
             return applyDiscountResponse;
         }
         private bool IsCustomerLoyal(DateTime joiningDate, int customerAgeYear)

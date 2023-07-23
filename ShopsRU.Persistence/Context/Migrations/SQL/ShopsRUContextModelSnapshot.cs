@@ -38,7 +38,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(684));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(6794));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 1,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1542),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7376),
                             IsDeleted = false,
                             Name = "Mutfak"
                         },
@@ -67,7 +67,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 2,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1552),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7379),
                             IsDeleted = false,
                             Name = "Mobilya"
                         },
@@ -75,7 +75,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 3,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1554),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7380),
                             IsDeleted = false,
                             Name = "Market"
                         },
@@ -83,7 +83,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 4,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1555),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7381),
                             IsDeleted = false,
                             Name = "Aydınlatma"
                         });
@@ -105,7 +105,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(5103));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8156));
 
                     b.Property<int>("CustomerTypeId")
                         .HasColumnType("int");
@@ -139,44 +139,44 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 1,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6325),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8852),
                             CustomerTypeId = 1,
                             FirstName = "EVREN",
                             IsDeleted = false,
-                            JoiningDate = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6337),
+                            JoiningDate = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8855),
                             LastName = "AKTAŞ"
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6340),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8856),
                             CustomerTypeId = 2,
                             FirstName = "ECE",
                             IsDeleted = false,
-                            JoiningDate = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6343),
+                            JoiningDate = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8857),
                             LastName = "DAĞDELEN"
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6344),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8858),
                             CustomerTypeId = 1,
                             FirstName = "İBRAHİM",
                             IsDeleted = false,
-                            JoiningDate = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6346),
+                            JoiningDate = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8859),
                             LastName = "AKIŞIK"
                         },
                         new
                         {
                             Id = 4,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6348),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8860),
                             CustomerTypeId = 2,
                             FirstName = "GİZEM",
                             IsDeleted = false,
-                            JoiningDate = new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6350),
+                            JoiningDate = new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8861),
                             LastName = "KURTCUOĞLU"
                         });
                 });
@@ -197,7 +197,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 317, DateTimeKind.Local).AddTicks(8140));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(3275));
 
                     b.Property<int>("CustomerTypeId")
                         .HasColumnType("int");
@@ -237,7 +237,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(558));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1419));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -257,7 +257,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 1,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1416),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1990),
                             IsDeleted = false,
                             Type = "Mağaza Çalışanı"
                         },
@@ -265,7 +265,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 2,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1422),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1994),
                             IsDeleted = false,
                             Type = "Mağaza Üyesi"
                         },
@@ -273,7 +273,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 3,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1424),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1996),
                             IsDeleted = false,
                             Type = "Sadık Müşteri"
                         });
@@ -295,7 +295,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(8526));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5171));
 
                     b.Property<int>("DiscountRate")
                         .HasColumnType("int");
@@ -318,7 +318,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 1,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9349),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5748),
                             DiscountRate = 30,
                             DiscountType = "Yüzde",
                             IsDeleted = false
@@ -327,7 +327,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 2,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9355),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5825),
                             DiscountRate = 10,
                             DiscountType = "Yüzde",
                             IsDeleted = false
@@ -336,7 +336,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         {
                             Id = 3,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9357),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5827),
                             DiscountRate = 5,
                             DiscountType = "Yüzde",
                             IsDeleted = false
@@ -362,7 +362,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 320, DateTimeKind.Local).AddTicks(4615));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(65));
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -396,6 +396,62 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.ToTable("Invoices");
                 });
 
+            modelBuilder.Entity("ShopsRU.Domain.Entities.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Controller")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ErrorCode")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<DateTime>("PostDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Trace")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("ShopsRU.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -415,7 +471,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(20));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(6281));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -442,7 +498,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                             Id = 1,
                             CategoryId = 1,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(853),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7203),
                             IsDeleted = false,
                             Name = "Gardırop",
                             Price = 3000m
@@ -452,7 +508,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                             Id = 2,
                             CategoryId = 2,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(862),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7207),
                             IsDeleted = false,
                             Name = "Fırın",
                             Price = 4000m
@@ -462,7 +518,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                             Id = 3,
                             CategoryId = 3,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(864),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7208),
                             IsDeleted = false,
                             Name = "Fıstık Ezmesi",
                             Price = 85m
@@ -472,7 +528,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                             Id = 4,
                             CategoryId = 4,
                             CreatedBy = "EVREN AKTAŞ",
-                            CreatedOn = new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(866),
+                            CreatedOn = new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7210),
                             IsDeleted = false,
                             Name = "ModeLight Işıl 3'lü Avize",
                             Price = 4000m
@@ -495,7 +551,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 323, DateTimeKind.Local).AddTicks(6204));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(3826));
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -535,7 +591,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 7, 21, 1, 43, 3, 323, DateTimeKind.Local).AddTicks(280));
+                        .HasDefaultValue(new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(346));
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()

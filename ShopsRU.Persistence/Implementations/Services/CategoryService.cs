@@ -18,6 +18,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
             _resourceService = resourceService;
+           
         }
 
 
@@ -33,6 +34,10 @@ namespace ShopsRU.Persistence.Implementations.Services
                 serviceDataResponse.StatusCode = 409;
                 return serviceDataResponse;
             }
+            int[] i = new int[1];
+            i[0] = 1;
+            i[1] = 2;
+            i[2] = 2;
             var category = createCategoryRequest.MapToEntity();
             await _categoryRepository.AddAsync(category);
 
@@ -53,7 +58,6 @@ namespace ShopsRU.Persistence.Implementations.Services
                     break;
             }
             return serviceDataResponse;
-
         }
     }
 }

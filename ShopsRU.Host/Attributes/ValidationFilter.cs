@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopsRU.Infrastructure.Attributes
+namespace ShopsRU.Host.Attributes
 {
     public class ValidationFilter : IAsyncActionFilter
     {

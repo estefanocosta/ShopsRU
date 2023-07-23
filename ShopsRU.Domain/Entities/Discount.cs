@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShopsRU.Domain.Entities
 {
-    public  class Discount:BaseEntity
+    public class Discount : BaseEntity
     {
         public Discount()
         {
@@ -17,6 +17,5 @@ namespace ShopsRU.Domain.Entities
         public int DiscountRate { get; set; }
         public ICollection<CustomerDiscount> CustomerDiscounts { get; set; }
 
-        
     }
 }

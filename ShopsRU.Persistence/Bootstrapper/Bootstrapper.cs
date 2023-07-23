@@ -29,14 +29,19 @@ namespace ShopsRU.Persistence.Bootstrapper
         {
             #region Services
             services.AddDbContext<ShopsRUContext>(x => x.UseSqlServer(configuration.GetConnectionString("ShopsRUConString")));
-            services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ISaleService, SaleService>();
             services.AddScoped<ICustomerTypeService, CustomerTypeService>();
             services.AddScoped<IInvoiceService, InvoiceService>();
-
-
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ISaleService, SaleService>();
+            services.AddScoped<ILogRepository, LogRepository>();
+            services.AddScoped<ILogService, LogService>();
+            services.AddScoped<ICustomerDiscountService, CustomerDiscountService>();
+            services.AddScoped<IResourceService, ResourceService>();
+            services.AddScoped<IDiscountStrategy, DiscountStrategy>();
+            #endregion
+            #region Repositories DI
             services.AddScoped<ICustomerTypeRepository, CustomerTypeRepository>();
             services.AddScoped<IInvoiceRepository, InvoiceRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -44,13 +49,8 @@ namespace ShopsRU.Persistence.Bootstrapper
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ISaleRepository, SaleRepository>();
             services.AddScoped<ISaleDetailRepository, SaleDetailRepository>();
-
-            services.AddScoped<IDiscountStrategy, DiscountStrategy>();
-            services.AddScoped<ICustomerDiscountService, CustomerDiscountService>();
             services.AddScoped<ICustomerDiscountRepository, CustomerDiscountRepository>();
-            services.AddScoped<IResourceService, ResourceService>();
             #endregion
-            services.AddScoped<IValidator<CreateProductRequest>, ProductValidator>();
             #region UnitOfWork
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion

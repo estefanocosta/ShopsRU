@@ -20,7 +20,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(684)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(6794)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -36,7 +36,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(558)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1419)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -53,13 +53,36 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DiscountType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DiscountRate = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(8526)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5171)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Controller = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Method = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Trace = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ErrorCode = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,7 +95,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 323, DateTimeKind.Local).AddTicks(6204)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(3826)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -90,7 +113,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     Name = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(20)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(6281)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -114,7 +137,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     JoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CustomerTypeId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(5103)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8156)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -138,7 +161,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     CustomerTypeId = table.Column<int>(type: "int", nullable: false),
                     DiscountId = table.Column<int>(type: "int", nullable: false),
                     RuleJson = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 317, DateTimeKind.Local).AddTicks(8140)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(3275)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -170,7 +193,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 323, DateTimeKind.Local).AddTicks(280)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(346)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -204,7 +227,7 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                     DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     InvoiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BillingUserId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 21, 1, 43, 3, 320, DateTimeKind.Local).AddTicks(4615)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(65)),
                     CreatedBy = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
@@ -230,10 +253,10 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "Name" },
                 values: new object[,]
                 {
-                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1542), "Mutfak" },
-                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1552), "Mobilya" },
-                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1554), "Market" },
-                    { 4, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 324, DateTimeKind.Local).AddTicks(1555), "Aydınlatma" }
+                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7376), "Mutfak" },
+                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7379), "Mobilya" },
+                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7380), "Market" },
+                    { 4, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 179, DateTimeKind.Local).AddTicks(7381), "Aydınlatma" }
                 });
 
             migrationBuilder.InsertData(
@@ -241,9 +264,9 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "Type" },
                 values: new object[,]
                 {
-                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1416), "Mağaza Çalışanı" },
-                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1422), "Mağaza Üyesi" },
-                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(1424), "Sadık Müşteri" }
+                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1990), "Mağaza Çalışanı" },
+                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1994), "Mağaza Üyesi" },
+                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 176, DateTimeKind.Local).AddTicks(1996), "Sadık Müşteri" }
                 });
 
             migrationBuilder.InsertData(
@@ -251,9 +274,9 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "DiscountRate", "DiscountType" },
                 values: new object[,]
                 {
-                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9349), 30, "Yüzde" },
-                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9355), 10, "Yüzde" },
-                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 319, DateTimeKind.Local).AddTicks(9357), 5, "Yüzde" }
+                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5748), 30, "Yüzde" },
+                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5825), 10, "Yüzde" },
+                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 177, DateTimeKind.Local).AddTicks(5827), 5, "Yüzde" }
                 });
 
             migrationBuilder.InsertData(
@@ -261,10 +284,10 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                 columns: new[] { "Id", "CreatedBy", "CreatedOn", "CustomerTypeId", "FirstName", "JoiningDate", "LastName" },
                 values: new object[,]
                 {
-                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6325), 1, "EVREN", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6337), "AKTAŞ" },
-                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6340), 2, "ECE", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6343), "DAĞDELEN" },
-                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6344), 1, "İBRAHİM", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6346), "AKIŞIK" },
-                    { 4, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6348), 2, "GİZEM", new DateTime(2023, 7, 21, 1, 43, 3, 318, DateTimeKind.Local).AddTicks(6350), "KURTCUOĞLU" }
+                    { 1, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8852), 1, "EVREN", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8855), "AKTAŞ" },
+                    { 2, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8856), 2, "ECE", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8857), "DAĞDELEN" },
+                    { 3, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8858), 1, "İBRAHİM", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8859), "AKIŞIK" },
+                    { 4, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8860), 2, "GİZEM", new DateTime(2023, 7, 23, 15, 26, 54, 175, DateTimeKind.Local).AddTicks(8861), "KURTCUOĞLU" }
                 });
 
             migrationBuilder.InsertData(
@@ -272,10 +295,10 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
                 columns: new[] { "Id", "CategoryId", "CreatedBy", "CreatedOn", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 1, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(853), "Gardırop", 3000m },
-                    { 2, 2, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(862), "Fırın", 4000m },
-                    { 3, 3, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(864), "Fıstık Ezmesi", 85m },
-                    { 4, 4, "EVREN AKTAŞ", new DateTime(2023, 7, 21, 1, 43, 3, 321, DateTimeKind.Local).AddTicks(866), "ModeLight Işıl 3'lü Avize", 4000m }
+                    { 1, 1, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7203), "Gardırop", 3000m },
+                    { 2, 2, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7207), "Fırın", 4000m },
+                    { 3, 3, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7208), "Fıstık Ezmesi", 85m },
+                    { 4, 4, "EVREN AKTAŞ", new DateTime(2023, 7, 23, 15, 26, 54, 178, DateTimeKind.Local).AddTicks(7210), "ModeLight Işıl 3'lü Avize", 4000m }
                 });
 
             migrationBuilder.CreateIndex(
@@ -322,6 +345,9 @@ namespace ShopsRU.Persistence.Context.Migrations.SQL
 
             migrationBuilder.DropTable(
                 name: "Invoices");
+
+            migrationBuilder.DropTable(
+                name: "Logs");
 
             migrationBuilder.DropTable(
                 name: "SaleDetails");

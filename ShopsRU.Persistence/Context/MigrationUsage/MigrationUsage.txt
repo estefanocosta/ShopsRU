@@ -1,2 +1,2 @@
-Add-Migration name -OutputDir  C:\Users\eaktas\source\repos\ShopsRU\ShopsRU.Persistence\Context\Migrations\SQL
+Add-Migration name -OutputDir  E:\ShopsRU\ShopsRU.Persistence\Context\Migrations\SQL
 update-database

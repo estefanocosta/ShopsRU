@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShopsRU.Domain.Enums
 {
-    public enum CustomerTypeEnum
+    public enum CustomerType
     {
         Employee=1,
         Member=2,
-        LoyalCustomer=3
     }
 }

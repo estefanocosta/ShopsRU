@@ -24,7 +24,7 @@ namespace ShopsRU.Persistence.Implementations.Services
         readonly IInvoiceRepository _invoiceRepository;
         readonly IResourceService _resourceService;
         IDiscountStrategy _discountStrategy;
-        public InvoiceService(IResourceService resourceService,ISaleRepository saleRepository,  IUnitOfWork unitOfWork, ICustomerRepository customerRepository, IInvoiceRepository invoiceRepository, ISaleDetailRepository saleDetailRepository, IDiscountStrategy discountStrategy, ICustomerDiscountRepository customerDiscountRepository)
+        public InvoiceService(IResourceService resourceService, ISaleRepository saleRepository, IUnitOfWork unitOfWork, ICustomerRepository customerRepository, IInvoiceRepository invoiceRepository, ISaleDetailRepository saleDetailRepository, IDiscountStrategy discountStrategy, ICustomerDiscountRepository customerDiscountRepository)
         {
             _invoiceRepository = invoiceRepository;
             _saleRepository = saleRepository;
@@ -50,7 +50,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             var customer = await _customerRepository.GetByIdAsync(sale.CustomerId);
             if (customer == null)
             {
-                serviceDataResponse.Message =_resourceService.GetResource("RESOURCE_NOT_FOUND");
+                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
                 serviceDataResponse.StatusCode = 404;
                 serviceDataResponse.Success = false;
                 return serviceDataResponse;
@@ -58,7 +58,7 @@ namespace ShopsRU.Persistence.Implementations.Services
 
 
 
-            var discountApplied = await CalculateDiscount(customer, sale.Id);
+            var discountApplied = await ApplyDiscount(customer, sale.Id);
             if (!discountApplied.Success)
             {
                 serviceDataResponse.Success = discountApplied.Success;
@@ -119,7 +119,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             serviceDataResponse.StatusCode = 200;
             return serviceDataResponse;
         }
-        public async Task<ServiceDataResponse<ApplyDiscountResponse>> CalculateDiscount(Customer customer, int saleId)
+        public async Task<ServiceDataResponse<ApplyDiscountResponse>> ApplyDiscount(Customer customer, int saleId)
         {
 
             ServiceDataResponse<ApplyDiscountResponse> serviceDataResponse = new ServiceDataResponse<ApplyDiscountResponse>();
@@ -135,22 +135,22 @@ namespace ShopsRU.Persistence.Implementations.Services
 
             }
             var customerDiscount = await _customerDiscountRepository.GetAll().Include(x => x.Discounts).FirstOrDefaultAsync(x => x.CustomerTypeId == customer.CustomerTypeId);
-            var discountStratecyRequest = new DiscountStratecyRules();
-            discountStratecyRequest.CustomerTypeId = customerDiscount.CustomerTypeId;
-            discountStratecyRequest.DiscountRate = customerDiscount.Discounts.DiscountRate;
-            discountStratecyRequest.DiscountType = customerDiscount.Discounts.DiscountType;
+
+            var discountStrategyRequest = new DiscountStrategyRules();
+            discountStrategyRequest.CustomerTypeId = customerDiscount.CustomerTypeId;
+            discountStrategyRequest.DiscountRate = customerDiscount.Discounts.DiscountRate;
+            discountStrategyRequest.DiscountType = customerDiscount.Discounts.DiscountType;
+
             var ruleJson = JsonConvert.DeserializeObject<RuleJson>(customerDiscount.RuleJson);
-            discountStratecyRequest.RuleJson = new RuleJson() { CustomerAgeMinYear = ruleJson.CustomerAgeMinYear, ExcludeCategories = ruleJson.ExcludeCategories, SubLimit = ruleJson.SubLimit, SubLimitApplyDiscountAmount = ruleJson.SubLimitApplyDiscountAmount };
+            discountStrategyRequest.RuleJson = new RuleJson() { CustomerAgeYear = ruleJson.CustomerAgeYear, ExcludeCategories = ruleJson.ExcludeCategories, FixedAmount = ruleJson.FixedAmount, FixedDiscountAmount = ruleJson.FixedDiscountAmount, LoyalCustomerDiscountRate = ruleJson.LoyalCustomerDiscountRate, LoyalCustomerPriority = ruleJson.LoyalCustomerPriority };
 
             var details = await _saleDetailRepository.GetAll(x => x.SaleId == saleId).Include(x => x.Product).ToListAsync();
 
             var amountToBeDiscounted = details.Where(x => !ruleJson.ExcludeCategories.Contains(x.Product.CategoryId)).Sum(x => x.TotalPrice);
             var amountNotBeDiscounted = details.Where(x => ruleJson.ExcludeCategories.Contains(x.Product.CategoryId)).Sum(x => x.TotalPrice);
 
-
-
             serviceDataResponse.Success = true;
-            serviceDataResponse.Paylod = _discountStrategy.ApplyDiscount(discountStratecyRequest, customer, amountToBeDiscounted);
+            serviceDataResponse.Paylod = _discountStrategy.ApplyDiscount(discountStrategyRequest, customer, amountToBeDiscounted);
             serviceDataResponse.Paylod.TotalAmount = amountToBeDiscounted + amountNotBeDiscounted;
             serviceDataResponse.StatusCode = 200;
             return serviceDataResponse;

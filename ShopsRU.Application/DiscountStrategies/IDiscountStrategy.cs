@@ -10,6 +10,6 @@ namespace ShopsRU.Application.DiscountStrategies
 {
     public  interface IDiscountStrategy
     {
-        public ApplyDiscountResponse ApplyDiscount(DiscountStratecyRules discountStratecyRules, Customer customer,decimal amount);
+        public ApplyDiscountResponse ApplyDiscount(DiscountStrategyRules discountStrategyRules, Customer customer,decimal totalAmount);
     }
 }

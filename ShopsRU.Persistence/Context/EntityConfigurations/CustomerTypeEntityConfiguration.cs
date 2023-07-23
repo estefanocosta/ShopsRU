@@ -23,7 +23,7 @@ namespace ShopsRU.Persistence.Context.EntityConfigurations
             #endregion
 
             #region Seed Data
-            builder.HasData(new CustomerType() {Id=1 ,Type="Mağaza Çalışanı"}, new CustomerType() { Id =2 , Type = "Mağaza Üyesi", },new CustomerType() {Id=3, Type="Sadık Müşteri"});
+            builder.HasData(new CustomerType() {Id=1 ,Type="Mağaza Çalışanı"}, new CustomerType() { Id =2 , Type = "Mağaza Üyesi", });
             #endregion
         }
     }
