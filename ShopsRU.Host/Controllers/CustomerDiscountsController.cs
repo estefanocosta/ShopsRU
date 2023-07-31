@@ -15,7 +15,7 @@ namespace ShopsRU.Host.Controllers
 
             _customerDiscountService = customerDiscountService;
         }
-            [HttpPost]
+        [HttpPost]
         [Route("discount")]
         public async Task<IActionResult> CreateAsync(CreateCustomerDiscountRequest createCustomerDiscountRequest)
         {

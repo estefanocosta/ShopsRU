@@ -1,11 +1,8 @@
 ﻿using ShopsRU.Application.Contract.Request.Log;
 using ShopsRU.Application.Interfaces.Services;
-using ShopsRU.Domain.Entities;
 using ShopsRU.Host.Models;
-using ShopsRU.Persistence.Implementations.Services;
 using System.Net;
 using System.Net.Mime;
-using System.Text.Json;
 
 namespace ShopsRU.Host.Middlewares
 {
@@ -31,7 +28,7 @@ namespace ShopsRU.Host.Middlewares
         }
         private Task ExceptionHandleAsync(HttpContext context, Exception exception, ILogService logService)
         {
-            var result = JsonSerializer.Serialize(new ExceptionResponseModel() { Message = exception.Message, StatusCode = (int)HttpStatusCode.InternalServerError });
+            var result = System.Text.Json.JsonSerializer.Serialize(new ExceptionResponseModel() { Message = exception.Message, StatusCode = (int)HttpStatusCode.InternalServerError });
             context.Response.ContentType = MediaTypeNames.Application.Json;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             var createLogRequest = new CreateLogRequest()

@@ -103,4 +103,3 @@ namespace ShopsRU.Tests.DiscountStrategies
         }
     }
 }
- 

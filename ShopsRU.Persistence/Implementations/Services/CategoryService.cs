@@ -34,10 +34,7 @@ namespace ShopsRU.Persistence.Implementations.Services
                 serviceDataResponse.StatusCode = 409;
                 return serviceDataResponse;
             }
-            int[] i = new int[1];
-            i[0] = 1;
-            i[1] = 2;
-            i[2] = 2;
+  
             var category = createCategoryRequest.MapToEntity();
             await _categoryRepository.AddAsync(category);
 
@@ -49,6 +46,40 @@ namespace ShopsRU.Persistence.Implementations.Services
                     serviceDataResponse.StatusCode = 200;
                     serviceDataResponse.Success = true;
                     serviceDataResponse.Paylod = createCategoryRequest.MapToPaylod(category);
+                    break;
+
+                case false:
+                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_FAILED");
+                    serviceDataResponse.StatusCode = 500;
+                    serviceDataResponse.Success = false;
+                    break;
+            }
+            return serviceDataResponse;
+        }
+
+        public async  Task<ServiceDataResponse<UpdateCategoryResponse>> UpdateAsync(UpdateCategoryRequest updateCategoryRequest)
+        {
+            ServiceDataResponse<UpdateCategoryResponse> serviceDataResponse = new ServiceDataResponse<UpdateCategoryResponse>();
+
+            var category = await _categoryRepository.GetByIdAsync(updateCategoryRequest.Id);
+            if (category == null)
+            {
+                serviceDataResponse.Success = false;
+                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
+                serviceDataResponse.StatusCode = 404;
+                return serviceDataResponse;
+            }
+
+            //var category = updateCategoryRequest.MapToEntity();
+            await _categoryRepository.UpdateAsync(category);
+            var result = await _unitOfWork.CommitAsync();
+            switch (result)
+            {
+                case true:
+                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_SUCCESS");
+                    serviceDataResponse.StatusCode = 200;
+                    serviceDataResponse.Success = true;
+                    serviceDataResponse.Paylod = updateCategoryRequest.MapToPaylod(category);
                     break;
 
                 case false:

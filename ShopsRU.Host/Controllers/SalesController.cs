@@ -14,20 +14,14 @@ namespace ShopsRU.Host.Controllers
         ISaleService _saleService;
         public SalesController(ISaleService saleService)
         {
-            _saleService=saleService;
+            _saleService = saleService;
         }
-
-
-
-
         [HttpPost]
         [Route("sale")]
-        public async Task<IActionResult> CreateAsync(CreateSaleRequest  createSaleRequest)
+        public async Task<IActionResult> CreateAsync(CreateSaleRequest createSaleRequest)
         {
             var response = await _saleService.CreateAsync(createSaleRequest);
             return Ok(response);
         }
-
-
     }
 }

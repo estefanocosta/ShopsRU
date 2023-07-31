@@ -6,6 +6,7 @@ using ShopsRU.Persistence.Implementations.Services;
 
 namespace ShopsRU.Host.Controllers
 {
+    
     [Route("api/")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -16,12 +17,19 @@ namespace ShopsRU.Host.Controllers
             _categoryService = categoryService;
         }
 
-
         [HttpPost]
         [Route("category")]
         public async Task<IActionResult> CreateAsync(CreateCategoryRequest createCategoryRequest)
         {
-            var response =await _categoryService.CreateAsync(createCategoryRequest);
+            var response = await _categoryService.CreateAsync(createCategoryRequest);
+            return Ok(response);
+        }
+
+        [HttpPut]
+        [Route("category")]
+        public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest updateCategoryRequest)
+        {
+            var response = await _categoryService.UpdateAsync(updateCategoryRequest);
             return Ok(response);
         }
     }
