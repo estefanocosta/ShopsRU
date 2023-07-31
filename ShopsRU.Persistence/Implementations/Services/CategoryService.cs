@@ -34,7 +34,7 @@ namespace ShopsRU.Persistence.Implementations.Services
                 serviceDataResponse.StatusCode = 409;
                 return serviceDataResponse;
             }
-
+ 
             var category = createCategoryRequest.MapToEntity();
             await _categoryRepository.AddAsync(category);
 
