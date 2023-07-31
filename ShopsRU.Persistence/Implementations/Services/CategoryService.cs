@@ -18,7 +18,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
             _resourceService = resourceService;
-           
+
         }
 
 
@@ -34,10 +34,7 @@ namespace ShopsRU.Persistence.Implementations.Services
                 serviceDataResponse.StatusCode = 409;
                 return serviceDataResponse;
             }
-<<<<<<< HEAD
-  
-=======
->>>>>>> d2b651b7729ecab510589e52a50bdb0261d6ba77
+
             var category = createCategoryRequest.MapToEntity();
             await _categoryRepository.AddAsync(category);
 
@@ -60,7 +57,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             return serviceDataResponse;
         }
 
-        public async  Task<ServiceDataResponse<UpdateCategoryResponse>> UpdateAsync(UpdateCategoryRequest updateCategoryRequest)
+        public async Task<ServiceDataResponse<UpdateCategoryResponse>> UpdateAsync(UpdateCategoryRequest updateCategoryRequest)
         {
             ServiceDataResponse<UpdateCategoryResponse> serviceDataResponse = new ServiceDataResponse<UpdateCategoryResponse>();
 
@@ -73,7 +70,8 @@ namespace ShopsRU.Persistence.Implementations.Services
                 return serviceDataResponse;
             }
 
-            //var category = updateCategoryRequest.MapToEntity();
+            category.Id = updateCategoryRequest.Id;
+            category.Name = updateCategoryRequest.Name;
             await _categoryRepository.UpdateAsync(category);
             var result = await _unitOfWork.CommitAsync();
             switch (result)

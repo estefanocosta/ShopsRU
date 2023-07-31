@@ -19,8 +19,7 @@ namespace ShopsRU.Application.Contract.Request.Category
         {
             return new Domain.Entities.Category()
             {
-                Name = this.Name
-
+                Name = this.Name,
             };
         }
     }
