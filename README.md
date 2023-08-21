@@ -45,56 +45,21 @@ Implementations
 
 
 
-### Genel Bakış
-Uygulama temel seviyede Customer, Product, Invoice, Sales, Discount, Category oluşturma ve görüntüleme uçlarını sunmaktadır. Exception yönetimi 
-(Middlewares/ErrorHandlerMiddleware) merkezi bir noktada handle edilmiştir. Oluşan exceptionlar Logs tablosuna loglanmıştır. 
+### Overview
+ShopsRUs is an existing retail outlet. They would like to provide discount to their customers on all their web/mobile platforms. They require a set of APIs to be built that provide capabilities to calculate discounts, generate the total costs and generate the invoices for customers
 
-Requst sınıflarının doğrulanması Fluent Validation ile gerçekleştirilip, belirnen kuralların dışında gelen istekler (Attributes/ValidationFilter) ile merkezi bir noktada ele almıştır.
+The following discounts apply:
+1.	If the user is an employee of the store, he gets a 30% discount
+2.	If the user is an affiliate of the store, he gets a 10% discount
+3.	If the user has been a customer for over 2 years, he gets a 5% discount.
+4.	For every $100 on the bill, there would be a $ 5 discount (e.g. for $ 990, you get $ 45 as a discount).
+5.	The percentage based discounts do not apply on groceries.
+6.	A user can get only one of the percentage based discounts on a bill.
 
-
-
-Veritabanı operasyonlarında generate edilen sorguların execute edilirken ortaya çıkaracağı maliyeti minimize etmek için her operasyon için db gidilmesi yerine Unit Of Work 
-design pattern uygulanıp, veri tutarlığının sağlanması için Commit/Rollback mekanizması işletilmiştir.
-
-Oluşturulacak her response için mesajlar kod içerisinde tutulmak yerine messages_en.json içerisinden okunup, ileride oluşabilecek bir değişiklikte kullanılan tüm yerlerde 
-düzenlemeye gitmeye gerek kalmaması hedeflenmiştir. Kodun kirlenmesinin önüne amaçlanmıştır.
-
-
-Sürdürülebilirlik, belirli kod standartları,algoritmik değişikliklerde uygulamanın kırılması gibi başlıklar göz önünde bulunduruluarak UnitTest projeye dahil edilmiştir.
+Write a program in a programming language of your choice with test cases such that given a bill, it finds the net payable amount. Create an RESTful API which when given a bill it returns the final invoice amount including the discount. Please note the stress is on object oriented approach and test coverage. User interface is not required. 
 
 
-
-
-### İndirim Yönetimi 
-İndirimler Mağaza Çalışan için %20, Mağaza Üyesi için %10 İki yılı aşkındır müşteri ise %5 şeklinde uygulanacaktır.
-Seçilen kategoride olan ürünler için indirim uygulanmayacak.
-Yüzde indirimlerinden bir faturada bir kez faydalanılabilir.
-Toplam Fatura tutarında her 100$ için 5$ indirim uygulanacak.
- 
-
-
-İndirimler uygulanırken küçük bir kırılım bulunmaktadır. Müşteri tipi "Mağaza Üyesi" olup ve 2  yılı aşkındır müşteri ise burada 
-%10 ve %5 lik bir indirim hakkı olacaktır. Yüzde indirimlerinden bir kez faydalanılabilir kuralını sağlamak için "" üzerinden uygulanacak indirim türü 
-önceliklendirilmiştir. "True" ise önce müşteri 2 yılı aşkındır müşteri mi ? durumuna bakılır ve kişi %5 indirimden faydalanır. "False" ise 
-kişi 2 yılı aşkındır müşteride olsa uygulanacak indirim önceliği %10 luk indirimdir.
-
-
-Uygulanabilecek indirim türleri Discount tablosunda yer almaktadır. Discount tablosu CustomerDiscount tablosu ile ilişkilendirilmiştir ve  müşteri tipine 
-göre indirimler belirlenmiştir. Burada bulunan RuleJson sınıfı veritbanında json olarak tutulup ileride gelecek kırılımlar için bir rule set görevi görmektedir.
-
- 
-
-ExcludeCategories : İndirimden muaf olacak kategoriler
-CustomerAgeYear : Müşteri yaşı 2 yıl bilgisi
-FixedAmount : Her 100$
-FixedDiscountAmount: 5$
-LoyalCustomerPriority: İndirim önceliği müşteri "Mağaza üyesi" tipinde ise bu alanın True gönderildiği durumda öncelik %5 lik indirim False ise 
-öncelik %10 indirimdir.
-
-LoyalCustomerDiscountRate: Müşteri yaşı için uygulanacak indirim oranı.  Müşteri yaşına göre uygulanacak indirim oranı değişebilir bu yüzden 
-parametrik olarak tasarlanmıştır.
-
-### Dil ve Teknolojiler
+### Language and Technologies
 * .Net 7
 * SQL
 * EF CORE
@@ -102,7 +67,7 @@ parametrik olarak tasarlanmıştır.
 * Fluent Validation
 * C#
 
-### Başlarken
+### Getting Started
 
 1. Clone the repo
    ```sh
