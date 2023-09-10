@@ -14,10 +14,5 @@ namespace ShopsRU.Application.Contract.Response.Product
         public string Name { get; set; }
         public decimal Price { get; set; }
         public DateTime CreatedOn { get; set; }
-
-
-      
-
-
     }
 }

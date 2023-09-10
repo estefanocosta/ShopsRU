@@ -1,0 +1,8 @@
+TDD
+Redis
+RabbitMQ
+DDD
+MongoDB
+
+
+

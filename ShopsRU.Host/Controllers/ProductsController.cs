@@ -17,7 +17,6 @@ namespace ShopsRU.Host.Controllers
             _productService = productService;
         }
 
-
         [HttpPost]
         [Route("product")]
         public async Task<IActionResult> CreateAsync(CreateProductRequest createProductRequest)

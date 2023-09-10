@@ -27,8 +27,8 @@ namespace ShopsRU.Persistence.Implementations.Services
         {
             ServiceDataResponse<CreateProductResponse> serviceDataResponse = new ServiceDataResponse<CreateProductResponse>();
  
-            var prooductCheck = await _productRepository.GetSingleAsync(x => x.Name.Trim().ToLower() == createProductRequest.Name.Trim().ToLower());
-            if (prooductCheck != null)
+            var productCheck = await _productRepository.GetSingleAsync(x => x.Name.Trim().ToLower() == createProductRequest.Name.Trim().ToLower());
+            if (productCheck != null)
             {
                 serviceDataResponse.Success = false;
                 serviceDataResponse.Message = _resourceService.GetResource("ALREADY_EXISTS");
