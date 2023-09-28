@@ -11,7 +11,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class InvoiceRepository : EfRepository<Invoice>, IInvoiceRepository
     {
-        public InvoiceRepository(ShopsRUContext shopsRUContextContext) : base(shopsRUContextContext)
+        public InvoiceRepository(ShopsRUContext shopsRUContext) : base(shopsRUContext)
         {
         }
     }

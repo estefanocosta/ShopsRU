@@ -11,7 +11,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class CustomerDiscountRepository : EfRepository<CustomerDiscount>, ICustomerDiscountRepository
     {
-        public CustomerDiscountRepository(ShopsRUContext shopsRUContextContext) : base(shopsRUContextContext)
+        public CustomerDiscountRepository(ShopsRUContext shopsRUContext) : base(shopsRUContext)
         {
         }
     }

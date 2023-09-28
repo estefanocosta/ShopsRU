@@ -11,7 +11,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class LogRepository : EfRepository<Log>, ILogRepository
     {
-        public LogRepository(ShopsRUContext shopsRUContextContext) : base(shopsRUContextContext)
+        public LogRepository(ShopsRUContext shopsRUContext) : base(shopsRUContext)
         {
         }
     }

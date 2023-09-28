@@ -14,12 +14,12 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class EfRepository<T> : IEfRepository<T> where T : BaseEntity
     {
-        readonly ShopsRUContext _shopsRUContextContext;
-        public EfRepository(ShopsRUContext shopsRUContextContext)
+        readonly ShopsRUContext _shopsRUContext;
+        public EfRepository(ShopsRUContext shopsRUContext)
         {
-            _shopsRUContextContext = shopsRUContextContext;
+            _shopsRUContext = shopsRUContext;
         }
-        public DbSet<T> Table => _shopsRUContextContext.Set<T>();
+        public DbSet<T> Table => _shopsRUContext.Set<T>();
         public virtual IQueryable<T> GetAll(bool tracking = true)
         {
 
@@ -78,7 +78,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
             else
             {
                 await Table.AddRangeAsync(entites);
-                await _shopsRUContextContext.SaveChangesAsync();
+                await _shopsRUContext.SaveChangesAsync();
                 return true;
             }
 
@@ -91,7 +91,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
             {
                 entity.IsDeleted = true;
                 Table.Update(entity);
-                await _shopsRUContextContext.SaveChangesAsync();
+                await _shopsRUContext.SaveChangesAsync();
                 return entity;
             }
         }
@@ -104,7 +104,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
             else
             {
                 Table.Update(entity);
-                await _shopsRUContextContext.SaveChangesAsync();
+                await _shopsRUContext.SaveChangesAsync();
                 return entity;
 
             }
@@ -117,7 +117,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
             else
             {
                 Table.Update(entity);
-                await _shopsRUContextContext.SaveChangesAsync();
+                await _shopsRUContext.SaveChangesAsync();
                 return entity;
 
             }
@@ -129,7 +129,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
             else
             {
                 Table.RemoveRange(entites);
-                await _shopsRUContextContext.SaveChangesAsync();
+                await _shopsRUContext.SaveChangesAsync();
                 return true;
             }
 

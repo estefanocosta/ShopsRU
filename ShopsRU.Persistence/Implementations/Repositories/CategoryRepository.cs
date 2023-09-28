@@ -12,7 +12,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class CategoryRepository : EfRepository<Category>, ICategoryRepository
     {
-        public CategoryRepository(ShopsRUContext shopsRUContextContext) : base(shopsRUContextContext)
+        public CategoryRepository(ShopsRUContext shopsRUContext) : base(shopsRUContext)
         {
         }
     }

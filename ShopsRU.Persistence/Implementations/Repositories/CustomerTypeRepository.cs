@@ -11,7 +11,7 @@ namespace ShopsRU.Persistence.Implementations.Repositories
 {
     public class CustomerTypeRepository : EfRepository<CustomerType>, ICustomerTypeRepository
     {
-        public CustomerTypeRepository(ShopsRUContext shopsRUContextContext) : base(shopsRUContextContext)
+        public CustomerTypeRepository(ShopsRUContext shopsRUContext) : base(shopsRUContext)
         {
         }
     }
