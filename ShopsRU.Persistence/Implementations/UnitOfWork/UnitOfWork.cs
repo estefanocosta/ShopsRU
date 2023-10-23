@@ -42,17 +42,17 @@ namespace ShopsRU.Persistence.Implementations.UnitOfWork
             }
 
         }
-        private bool disposed = false;
+        private bool _disposed = false;
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this._disposed)
             {
                 if (disposing)
                 {
                     _context.Dispose();
                 }
             }
-            this.disposed = true;
+            this._disposed = true;
         }
         public void Dispose()
         {

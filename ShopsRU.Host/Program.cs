@@ -5,10 +5,9 @@ using ShopsRU.Application.Validators;
 using ShopsRU.Host.Extensions;
 using ShopsRU.Host.Middlewares;
 using ShopsRU.Host.Attributes;
-using NLog;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Options;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,19 +16,26 @@ builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>
                 .RegisterValidatorsFromAssemblyContaining<ProductValidator>())
             .ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 builder.Services.AddPersistenceServiceRegistration(builder.Configuration);
-
-
-
- 
- 
-
-#region Versioning
-
-
-#endregion
-
-
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddOpenTelemetry().WithTracing(configuration =>
+{
+   
+    configuration.ConfigureResource(x =>
+    {
+        x.AddService("ShopsRU.Host", serviceVersion: "1.0.0");
+    });
+    configuration.AddOtlpExporter(otlpOptions =>
+    {
+        otlpOptions.Endpoint = new Uri("http://localhost:4317");
+    });
+    configuration.AddAspNetCoreInstrumentation(options =>
+    {
+        options.Filter = (req) => !req.Request.Path.StartsWithSegments("/swagger");
+    });
+
+});
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shops RU", Version = "v1" });
@@ -53,9 +59,5 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 app.UseAuthorization();
 app.UseSwagger();
 app.UseStaticFiles();
-
-
-
 app.MapControllers();
-
 app.Run();
