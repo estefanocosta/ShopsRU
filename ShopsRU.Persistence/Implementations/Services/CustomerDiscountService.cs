@@ -1,9 +1,12 @@
-﻿using ShopsRU.Application.Contract.Request.CustomerDiscount;
+﻿using ShopsRU.Application.Contract.Request.Category;
+using ShopsRU.Application.Contract.Request.CustomerDiscount;
+using ShopsRU.Application.Contract.Response.Category;
 using ShopsRU.Application.Contract.Response.CustomerDiscount;
 using ShopsRU.Application.Interfaces.Repositories;
 using ShopsRU.Application.Interfaces.Services;
 using ShopsRU.Application.Interfaces.UnitOfWork;
 using ShopsRU.Application.Wrappers;
+using ShopsRU.Domain.Entities;
 using ShopsRU.Infrastructure.Resources;
 
 namespace ShopsRU.Persistence.Implementations.Services
@@ -28,40 +31,19 @@ namespace ShopsRU.Persistence.Implementations.Services
             var customerType = await _customerTypeRepository.GetByIdAsync(createCustomerDiscountRequest.CustomerTypeId);
             if (customerType == null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND"); 
-                serviceDataResponse.StatusCode = 404;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+                return serviceDataResponse.CreateServiceResponse<CustomerDiscountResponse>(404, _resourceService, Domain.Enums.ResponseMessage.RESOURCE_NOT_FOUND);
             }
             var customerDiscountExists = await _customerDiscountRepository.GetSingleAsync(x => x.CustomerTypeId == createCustomerDiscountRequest.CustomerTypeId && x.IsDeleted == false);
             if (customerDiscountExists != null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("ALREADY_EXISTS");
-                serviceDataResponse.StatusCode = 409;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+
+                return serviceDataResponse.CreateServiceResponse<CustomerDiscountResponse>(409, _resourceService, Domain.Enums.ResponseMessage.ALREADY_EXISTS);
             }
 
             var customerDiscount = createCustomerDiscountRequest.MapToEntity();
             await _customerDiscountRepository.AddAsync(customerDiscount);
             var result = await _unitOfWork.CommitAsync();
-            switch (result)
-            {
-                case true:
-                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_SUCCESS");
-                    serviceDataResponse.StatusCode = 200;
-                    serviceDataResponse.Success = true;
-
-                    serviceDataResponse.Paylod = createCustomerDiscountRequest.MapToPaylod(customerDiscount);
-                    break;
-
-                case false:
-                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_FAILED");
-                    serviceDataResponse.StatusCode = 500;
-                    serviceDataResponse.Success = false;
-                    break;
-            }
-            return serviceDataResponse;
+            return serviceDataResponse.CreateServiceResponse<CustomerDiscountResponse>(result, createCustomerDiscountRequest.MapToPaylod(customerDiscount), _resourceService);
         }
     }
 }

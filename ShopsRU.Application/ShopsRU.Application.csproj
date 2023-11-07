@@ -10,10 +10,12 @@
     <PackageReference Include="FluentValidation" Version="11.6.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Threading.RateLimiting" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ShopsRU.Domain\ShopsRU.Domain.csproj" />
+    <ProjectReference Include="..\ShopsRU.Infrastructure\ShopsRU.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

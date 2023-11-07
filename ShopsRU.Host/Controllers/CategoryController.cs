@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using ShopsRU.Application.Contract.Request.Category;
 using ShopsRU.Application.Interfaces.Services;
 using ShopsRU.Persistence.Implementations.Services;
@@ -17,6 +18,7 @@ namespace ShopsRU.Host.Controllers
             _categoryService = categoryService;
         }
 
+        [EnableRateLimiting("Api")]
         [HttpPost]
         [Route("category")]
         public async Task<IActionResult> CreateAsync(CreateCategoryRequest createCategoryRequest)
@@ -24,7 +26,7 @@ namespace ShopsRU.Host.Controllers
             var response = await _categoryService.CreateAsync(createCategoryRequest);
             return Ok(response);
         }
-
+        [EnableRateLimiting("Api")]
         [HttpPut]
         [Route("category")]
         public async Task<IActionResult> UpdateAsync(UpdateCategoryRequest updateCategoryRequest)

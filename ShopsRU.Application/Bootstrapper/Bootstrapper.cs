@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.RateLimiting;
 
 namespace ShopsRU.Application.Bootstrapper
 {
@@ -16,6 +17,7 @@ namespace ShopsRU.Application.Bootstrapper
     {
         public static void AddApplicationServiceRegistration(this IServiceCollection services)
         {
+    
         }
     }
 

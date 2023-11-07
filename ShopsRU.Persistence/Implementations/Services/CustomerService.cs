@@ -1,4 +1,5 @@
 ﻿using ShopsRU.Application.Contract.Request.Customer;
+using ShopsRU.Application.Contract.Response.Category;
 using ShopsRU.Application.Contract.Response.Customer;
 using ShopsRU.Application.Interfaces.Repositories;
 using ShopsRU.Application.Interfaces.Services;
@@ -10,6 +11,8 @@ namespace ShopsRU.Persistence.Implementations.Services
 {
     public class CustomerService : ICustomerService
     {
+
+
         ICustomerRepository _customerRepository;
         IUnitOfWork _unitOfWork;
         IResourceService _resourceService;
@@ -25,22 +28,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             var customer = createCustomerRequest.MapToEntity();
             await _customerRepository.AddAsync(customer);
             var result = await _unitOfWork.CommitAsync();
-            switch (result)
-            {
-                case true:
-                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_SUCCESS");
-                    serviceDataResponse.StatusCode = 200;
-                    serviceDataResponse.Success = true;
-                    serviceDataResponse.Paylod = createCustomerRequest.MapToPaylod(customer);
-                    break;
-
-                case false:
-                    serviceDataResponse.Message = _resourceService.GetResource("OPERATION_FAILED");
-                    serviceDataResponse.StatusCode = 500;
-                    serviceDataResponse.Success = false;
-                    break;
-            }
-            return serviceDataResponse;
+            return serviceDataResponse.CreateServiceResponse<CreateCustomerResponse>(result, createCustomerRequest.MapToPaylod(customer), _resourceService);
         }
 
         public async Task<ServiceDataResponse<GetSingleCustomerResponse>> GetSingleAsync(int id)
@@ -50,10 +38,8 @@ namespace ShopsRU.Persistence.Implementations.Services
             var customer = await _customerRepository.GetSingleAsync(x => x.Id == id);
             if (customer == null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
-                serviceDataResponse.StatusCode = 404;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+                return serviceDataResponse.CreateServiceResponse<GetSingleCustomerResponse>(404, _resourceService, Domain.Enums.ResponseMessage.RESOURCE_NOT_FOUND);
+            
             }
             GetSingleCustomerResponse getSingleCustomerResponse = new GetSingleCustomerResponse();
             serviceDataResponse.Message = _resourceService.GetResource("DATA_RETRIEVED_SUCCESSFULLY");

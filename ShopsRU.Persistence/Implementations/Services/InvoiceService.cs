@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using ShopsRU.Application.Contract.Request.Category;
 using ShopsRU.Application.Contract.Request.Invoice;
+using ShopsRU.Application.Contract.Response.Category;
 using ShopsRU.Application.Contract.Response.CustomerDiscount;
 using ShopsRU.Application.Contract.Response.Invoice;
 using ShopsRU.Application.DiscountStrategies;
@@ -42,18 +44,16 @@ namespace ShopsRU.Persistence.Implementations.Services
             var sale = await _saleRepository.GetByIdAsync(createInvoiceRequest.SaleId);
             if (sale == null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
-                serviceDataResponse.StatusCode = 404;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+
+                return serviceDataResponse.CreateServiceResponse<CreateInvoiceResponse>(404, _resourceService, Domain.Enums.ResponseMessage.RESOURCE_NOT_FOUND);
+
+
+               
             }
             var customer = await _customerRepository.GetByIdAsync(sale.CustomerId);
             if (customer == null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
-                serviceDataResponse.StatusCode = 404;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+                return serviceDataResponse.CreateServiceResponse<CreateInvoiceResponse>(404, _resourceService, Domain.Enums.ResponseMessage.RESOURCE_NOT_FOUND);
             }
 
 
@@ -72,23 +72,9 @@ namespace ShopsRU.Persistence.Implementations.Services
                 var invoice = createInvoiceRequest.MapToEntity(discountApplied.Paylod, customer.Id, sale.Id);
                 await _invoiceRepository.AddAsync(invoice);
                 var result = await _unitOfWork.CommitAsync();
-                switch (result)
-                {
-                    case true:
-                        serviceDataResponse.Message = _resourceService.GetResource("OPERATION_SUCCESS");
-                        serviceDataResponse.StatusCode = 200;
-                        serviceDataResponse.Success = true;
-                        serviceDataResponse.Paylod = createInvoiceRequest.MapToPaylod(invoice);
-                        break;
-                    case false:
-                        serviceDataResponse.Message = _resourceService.GetResource("OPERATION_FAILED");
-                        serviceDataResponse.StatusCode = 500;
-                        serviceDataResponse.Success = false;
-                        break;
-                }
+                return serviceDataResponse.CreateServiceResponse<CreateInvoiceResponse>(result, createInvoiceRequest.MapToPaylod(invoice), _resourceService);
             }
 
-            return serviceDataResponse;
         }
 
         public async Task<ServiceDataResponse<GetSingleInvoiceResponse>> GetSingleAsync(int id)
@@ -98,10 +84,8 @@ namespace ShopsRU.Persistence.Implementations.Services
             var invoice = await _invoiceRepository.GetByIdAsync(id);
             if (invoice == null)
             {
-                serviceDataResponse.Message = _resourceService.GetResource("RESOURCE_NOT_FOUND");
-                serviceDataResponse.StatusCode = 404;
-                serviceDataResponse.Success = false;
-                return serviceDataResponse;
+                return serviceDataResponse.CreateServiceResponse<GetSingleInvoiceResponse>(404, _resourceService, Domain.Enums.ResponseMessage.RESOURCE_NOT_FOUND);
+               
             }
             GetSingleInvoiceResponse getSingleCustomerResponse = new GetSingleInvoiceResponse();
             getSingleCustomerResponse.CustomerName = string.Concat(invoice.Customer.FirstName, " ", invoice.Customer.LastName);
@@ -127,11 +111,7 @@ namespace ShopsRU.Persistence.Implementations.Services
             var invoiceExists = await _invoiceRepository.GetSingleAsync(x => x.SaleId == saleId);
             if (invoiceExists != null)
             {
-                serviceDataResponse.Success = false;
-                serviceDataResponse.Message = _resourceService.GetResource("ALREADY_EXISTS");
-                serviceDataResponse.Paylod = null;
-                serviceDataResponse.StatusCode = 424;
-                return serviceDataResponse;
+                return serviceDataResponse.CreateServiceResponse<ApplyDiscountResponse>(424, _resourceService, Domain.Enums.ResponseMessage.ALREADY_EXISTS);
 
             }
             var customerDiscount = await _customerDiscountRepository.GetAll().Include(x => x.Discounts).FirstOrDefaultAsync(x => x.CustomerTypeId == customer.CustomerTypeId);

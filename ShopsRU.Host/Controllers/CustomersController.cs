@@ -25,6 +25,7 @@ namespace ShopsRU.Host.Controllers
         [Route("customer")]
         public async Task<IActionResult> CreateAsync(CreateCustomerRequest createCustomerRequest)
         {
+
             var response = await _customerService.CreateAsync(createCustomerRequest);
             return Ok(response);
         }

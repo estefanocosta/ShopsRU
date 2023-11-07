@@ -8,6 +8,11 @@ using ShopsRU.Host.Attributes;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Resources;
+using System.Threading.RateLimiting;
+using Grpc.Core;
+using Microsoft.AspNetCore.RateLimiting;
+using ShopsRU.Application.Wrappers;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +25,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddOpenTelemetry().WithTracing(configuration =>
 {
-   
+
     configuration.ConfigureResource(x =>
     {
         x.AddService("ShopsRU.Host", serviceVersion: "1.0.0");
@@ -29,11 +34,7 @@ builder.Services.AddOpenTelemetry().WithTracing(configuration =>
     {
         otlpOptions.Endpoint = new Uri("http://localhost:4317");
     });
-    configuration.AddAspNetCoreInstrumentation(options =>
-    {
-        options.Filter = (req) => !req.Request.Path.StartsWithSegments("/swagger");
-    });
-
+    configuration.AddAspNetCoreInstrumentation();
 });
 
 builder.Services.AddSwaggerGen(c =>
@@ -48,11 +49,12 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shops RU V1");
         c.DocumentTitle = "Shops RU V1 Docs";
-        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List); 
+        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
         c.InjectStylesheet("/assets/css/swagger-ui.css");
         c.DefaultModelsExpandDepth(-1);
     });
 }
+app.UseRateLimiter();
 app.UseGlobalExceptionHandler();
 app.UseHttpsRedirection();
 app.UseMiddleware<ErrorHandlerMiddleware>();
